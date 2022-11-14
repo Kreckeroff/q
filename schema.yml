@@ -1,0 +1,128 @@
+openapi: 3.0.3
+info:
+  title: DB API
+  version: 0.0.01
+  description: Api для записи в бд и получения записей из бд
+paths:
+  /api/AddConfView/{Title}/{ConfDate}/{ConfTag}:
+    get:
+      operationId: AddConfView_retrieve
+      parameters:
+      - in: path
+        name: ConfDate
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ConfTag
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: Title
+        schema:
+          type: string
+        required: true
+      tags:
+      - AddConfView
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conf'
+          description: ''
+  /api/ConfView/{Title}/{ConfDate}/{ConfTag}:
+    get:
+      operationId: ConfView_retrieve
+      parameters:
+      - in: path
+        name: ConfDate
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ConfTag
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: Title
+        schema:
+          type: string
+        required: true
+      tags:
+      - ConfView
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conf'
+          description: ''
+  /api/getConfView/{Title}/{ConfDate}/{ConfTag}:
+    get:
+      operationId: getConfView_retrieve
+      parameters:
+      - in: path
+        name: ConfDate
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: ConfTag
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: Title
+        schema:
+          type: string
+        required: true
+      tags:
+      - getConfView
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conf'
+          description: ''
+components:
+  schemas:
+    Conf:
+      type: object
+      properties:
+        id:
+          type: integer
+        Title:
+          type: string
+        ConfDate:
+          type: string
+        ConfTag:
+          type: string
+      required:
+      - ConfDate
+      - ConfTag
+      - Title
+      - id
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid

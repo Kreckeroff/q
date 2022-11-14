@@ -7,3 +7,9 @@ class Conference:
         self.Title = Title
         self.ConfDate = ConfDate
         self.ConfTag = ConfTag
+
+class AddConference:
+    def __init__(self,  Title, ConfDate, ConfTag):
+        self.Title = Title
+        self.ConfDate = ConfDate
+        self.ConfTag = ConfTag
